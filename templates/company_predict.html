@@ -1,0 +1,59 @@
+{% include 'compheader.html' %}
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/static/images/hero_1.jpg');" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Company Home Page</h1>
+            <div class="custom-breadcrumbs">
+              <a href="/">Home</a> <span class="mx-2 slash">/</span>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<div class="wrapper row3">
+    <main class="hoc container clear"> 
+        <div class="content"> 
+            <h2>Student selection criteria level</h2>
+            <form action="/company/company_result" method="post">
+                <table class="table">
+                    {% for row in data %}
+                    <tr>
+                        <td>
+                            {{row['criteria_name']}}
+                        </td>
+                        <td>
+                            {% if row['criteria_type'] == 'text' %}
+                            <div class="form-group">
+                                <input pattern="[0-9]{1,2,3}" required type="text" class="form-control" placeholder="{{row['criteria_level_range']}}" name="criteria_{{row['criteria_id']}}">
+                            </div>
+                            {% else %}
+                            {% set options = row['criteria_level_range'].split(',') %}
+                            <div class="form-group">
+                                <select name="criteria_{{row['criteria_id']}}" class="form-control">
+                                    {% for option in options %}
+                                    <option value="{{option}}">{{option}}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <input required type="submit" name="predict" value="Predict" class="btn btn-warning">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </main>
+</div>
+{% include 'footer.html' %}
+
+

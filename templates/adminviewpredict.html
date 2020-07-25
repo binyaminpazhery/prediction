@@ -1,0 +1,57 @@
+{% include 'adminheader.html' %}
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/static/images/hero_1.jpg');" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Admin Home Page</h1>
+            <div class="custom-breadcrumbs">
+              <a href="/">Home</a> <span class="mx-2 slash">/</span>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<div class="wrapper row3">
+    <main class="hoc container clear"> 
+        <div class="content"> 
+            <h2>Predicted students</h2>
+            <table class="table">
+                <tr>
+                    <th>Placement chance</th>
+                    <th>Course name</th>
+                    <th>Fname</th>
+                    <th>Lname</th>
+                    <th>Gender</th>
+                    <th>Dob</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+
+                </tr>
+                {% for row in data %}
+                <tr>
+                    <td>{{row['predicted']}}</td>
+                    <td>{{row['coursename']}}</td>
+                    <td>{{row['firstname']}}</td>
+                    <td>{{row['lastname']}}</td>
+                    <td>{{row['gender']}}</td>
+                    <td>{{row['dob']}}</td>
+                    <td>
+                        {{row['housename']}}<br>
+                        {{row['place']}}<br>
+                        {{row['pincode']}}<br>
+                    </td>
+                    <td>{{row['phoneno']}}</td>
+                    <td>{{row['emailid']}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+           
+        </div>
+    </main>
+</div>
+{% include 'footer.html' %}
+
+

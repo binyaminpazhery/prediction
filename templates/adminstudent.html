@@ -1,0 +1,303 @@
+{% include 'adminheader.html' %}
+<style type="text/css">
+    
+.form-control{
+  width: 50%;
+}
+</style>
+
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('/static/images/hero_1.jpg');" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Student Details</h1>
+            <div class="custom-breadcrumbs">
+              <a href="/">Home</a> <span class="mx-2 slash">/</span>
+              <a href="/admin/adminstudent">Student</a> <span class="mx-2 slash">/</span>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <form class="p-4 p-md-5 border rounded" method="post">
+    <section class="site-section">
+      <div class="container">
+
+      
+        <div class="row mb-5">
+          <div class="col-lg-12">
+          
+              <h3 class="text-black mb-5 border-bottom pb-2">Student Management</h3>
+
+	
+    {% if data['updatestd'] %}
+
+
+
+
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" name="firstname" value="{{data['updatestd'][0]['firstname']}}" required="" pattern="[a-zA-Z\s]{2,20}" title="Enter Valid Name" class="form-control" placeholder="First Name">
+               
+            </div>
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" name="lastname" value="{{data['updatestd'][0]['lastname']}}" required="" pattern="[a-zA-Z\s]{2,20}" title="Enter Valid Name" class="form-control" placeholder="Last Name"></textarea> 
+
+              </div>
+              <div class="form-group">
+                <label for="dob">D.O.B</label>
+                <input type="date" name="dob" value="{{data['updatestd'][0]['dob']}}" required="" class="form-control">
+              </div>
+
+
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <<input type="radio" name="gender" value="male" {% if data['updatestd'][0]['gender']=='male' %} checked="" {%endif%} class="form-control" placeholder="Gender">male
+                <input type="radio" name="gender" value="female" {% if data['updatestd'][0]['gender']=='female' %} checked="" {%endif%} class="form-control" placeholder="Gender">female
+               
+              </div>
+              
+
+              <div class="form-group">
+                <label for="phoneno">Phone No</label>
+                <input type="text" name="phoneno" value="{{data['updatestd'][0]['phoneno']}}" required="" pattern="[0-9]{10}" class="form-control" placeholder="Phone No">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="emailid" value="{{data['updatestd'][0]['emailid']}}" required="" class="form-control" id="email" placeholder="you@yourdomain.com">
+              </div>
+
+              <div class="form-group">
+                <label for="housename">House Name</label>
+                <input type="text" name="housename" value="{{data['updatestd'][0]['housename']}}" required="" class="form-control" placeholder="House Name">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="place">Place</label>
+                <input type="text" name="place" value="{{data['updatestd'][0]['place']}}" required="" title="Enter Valid Place" class="form-control" placeholder="Place">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="pincode">Pincode</label>
+                <input type="text" name="pincode" value="{{data['updatestd'][0]['pincode']}}" required="" pattern="[0-9]{6}" title="Enter Valid Pincode" class="form-control" placeholder="Pincode">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="guardianname">Guardian Name</label>
+                <input type="text" name="guardianname" value="{{data['updatestd'][0]['guardianname']}}" required="" title="Enter Valid Name" class="form-control" placeholder="Guardian Name">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="relationship">Relationship</label>
+                <input type="text" name="relationship" value="{{data['updatestd'][0]['relationship']}}" required="" class="form-control" placeholder="Relationship">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="pincode">Pincode</label>
+                <input type="text" name="guardianphone" value="{{data['updatestd'][0]['guardianphone']}}" required="" pattern="[0-9]{10}" title="Enter Valid Phone No" class="form-control" placeholder="Phone No">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="course_id">Course</label>
+                <select name="course_id">
+                <option>Select</option>
+                {% for row in data['course'] %}
+                <option value="{{row['course_id']}}"{% if data['updatestd'][0]['course_id']==row['course_id'] %} selected="" {%endif%} required="" class="form-control">{{row['coursename']}}</option>
+                {% endfor %}
+                </select>
+               
+              </div>
+
+              <div class="form-group">
+                <label for="interest">Interests</label>
+                <textarea name="interest" required=""  class="form-control" placeholder="Phone No">{{data['updatestd'][0]['interest']}}</textarea>
+               
+              </div>
+
+              
+                            
+                </div>
+                <div class="row align-items-center mb-5">
+                  
+                  <div class="col-lg-4 ml-auto">
+                    <div class="row">
+                     
+                      <div class="col-6">
+                        <input type="submit" name="update" value="Update" style="width: 150px;" class="btn btn-block btn-primary btn-md">
+                       
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+    
+    {% else %}
+
+
+                <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" name="firstname" required=""  pattern="[a-zA-Z\s]{2,20}" title="Enter Valid Name" class="form-control" placeholder="First Name">
+               
+            </div>
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" name="lastname" required="" pattern="[a-zA-Z\s]{2,20}" title="Enter Valid Name" class="form-control" placeholder="Last Name"></textarea> 
+
+              </div>
+              <div class="form-group">
+                <label for="dob">D.O.B</label>
+                <input type="date" name="dob" required="" class="form-control">
+              </div>
+
+
+              <div class="form-group">
+                <label for="gender" style="margin-right: 100px;">Gender</label>
+                <input type="radio" name="gender" value="male" checked=""  placeholder="Gender">male
+                <input type="radio" name="gender" value="female" checked="" placeholder="Gender">female
+               
+              </div>
+              
+
+              <div class="form-group">
+                <label for="phoneno">Phone No</label>
+                <input type="text" name="phoneno" required="" pattern="[0-9]{10}" class="form-control" placeholder="Phone No">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="emailid">Email</label>
+                <input type="email" name="emailid" required="" class="form-control" id="email" placeholder="you@yourdomain.com">
+              </div>
+
+              <div class="form-group">
+                <label for="housename">House Name</label>
+                <input type="text" name="housename" required="" class="form-control" placeholder="House Name">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="place">Place</label>
+                <input type="text" name="place" required="" title="Enter Valid Place" class="form-control" placeholder="Place">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="pincode">Pincode</label>
+                <input type="text" name="pincode" required="" pattern="[0-9]{6}" title="Enter Valid Pincode" class="form-control" placeholder="Pincode">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="guardianname">Guardian Name</label>
+                <input type="text" name="guardianname" required="" title="Enter Valid Name" class="form-control" placeholder="Guardian Name">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="relationship">Relationship</label>
+                <input type="text" name="relationship" required="" class="form-control" placeholder="Relationship">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="pincode">Pincode</label>
+                <input type="text" name="guardianphone" required="" pattern="[0-9]{10}" title="Enter Valid Phone No" class="form-control" placeholder="Pin Code">
+               
+              </div>
+
+              <div class="form-group">
+                <label for="course_id">Course</label>
+                <select name="course_id">
+                <option>Select</option>
+                {% for row in data['course'] %}
+                <option value="{{row['course_id']}}" selected="" required="" class="form-control">{{row['coursename']}}</option>
+                {% endfor %}
+                </select>
+               
+              </div>
+
+              <div class="form-group">
+                <label for="interest">Interests</label>
+                <textarea name="interest" required="" class="form-control" placeholder="Interests"></textarea>
+               
+              </div>
+
+              
+                            
+                </div>
+                <div class="row align-items-center mb-5">
+                  
+                  <div class="col-lg-4 ml-auto">
+                    <div class="row">
+                     
+                      <div class="col-6">
+                        <input type="submit" name="submit" value="Save" style="width: 150px;" class="btn btn-block btn-primary btn-md">
+                       
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+    {% endif %}
+    <center>
+    <table class="table" style="width: 1100px;">
+        <h1 align="center">Student Details</h1>
+            <tr><th>Full Name</th>
+            <th>D.O.B</th>
+            <th>Gender</th>
+            <th>Phone No</th>
+            <th>Email Id</th>
+            <th>Address</th>
+            <th>Guardian Name</th>
+            <th>Relationship</th>
+            <th>Guardian Phone</th>
+            <th>Course Name</th>
+            <th>Interest</th>
+            <th>--</th>
+            <th>--</th>
+
+        </tr>
+        
+        
+        <tbody>
+            {% for row in data['student'] %}
+            <tr>
+            <td>{{row['firstname']}} {{row['lastname']}}</td>
+            <td>{{row['dob']}}</td>
+            <td>{{row['gender']}}</td>
+            <td>{{row['phoneno']}}</td>
+            <td>{{row['emailid']}}</td>
+            <td>{{row['housename']}}<br>{{row['place']}}<br>Pin : {{row['pincode']}}</td>
+            <td>{{row['guardianname']}}</td>
+            <td>{{row['relationship']}}</td>
+            <td>{{row['guardianphone']}}</td>
+            <td>{{row['coursename']}}</td>
+            <td>{{row['interest']}}</td>
+            <td><a href="?action=delete&id={{row['student_id']}}">Delete</a></td>
+            <td><a href="?action=update&id={{row['student_id']}}">Update</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+       
+    </table>
+    </center>
+</div>
+</section>
+</form>
+</body>
+</html>>
+{% include 'footer.html' %}

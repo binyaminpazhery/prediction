@@ -1,0 +1,73 @@
+{% include 'adminheader.html' %}
+<style type="text/css">
+    
+.form-control{
+  width: 50%;
+}
+</style>
+
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('/static/images/hero_1.jpg');" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Criteria Details</h1>
+            <div class="custom-breadcrumbs">
+              <a href="/">Home</a> <span class="mx-2 slash">/</span>
+              <a href="/admin/admincriteria">criteria</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>Criteria Details</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+     <form class="p-4 p-md-5 border rounded" method="post">
+    <section class="site-section">
+      <div class="container">
+
+      
+        <div class="row mb-5">
+          <div class="col-lg-12">
+          
+              <h3 class="text-black mb-5 border-bottom pb-2">Course Management</h3>
+                    <h2>Add criteria</h2>
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <input type="text" name="criteria_name"  placeholder="Criteria" class="form-control" required>
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="criteria_level_range"  placeholder="Criteria levels" class="form-control">
+                        </div>
+                         <div class="form-group">
+                           <select required  class="form-control" name="criteria_type">
+                               <option selected disabled>Criteria type</option>
+                               <option value="text">Text</option>
+                               <option value="option">Option</option>
+                           </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="submit" name="add_criteria" value="Add"   class="btn btn-success" required >
+                        </div>
+                    </form>
+
+                     <table class="table">
+                <tr>
+                    <th>Criteria name</th>
+                    <th>Criteria level range</th>
+                    <th>Criteria type</th>
+                    <th>--</th>
+                </tr>
+                {% for row in data['criteria'] %}
+                <tr>
+                    <td>{{row['criteria_name']}}</td>
+                    <td>{{row['criteria_level_range']}}</td>
+                    <td>{{row['criteria_type']}}</td>
+                   
+                    <td><a href="?action=delete&criteria_id={{row['criteria_id']}}">Delete</a></td>
+
+                </tr>
+                {% endfor %}
+            </table>
+{% include 'footer.html' %}
+
+

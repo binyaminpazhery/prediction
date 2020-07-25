@@ -1,0 +1,49 @@
+{% include 'adminheader.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Company</title>
+</head>
+<body>
+
+
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('/static/images/hero_1.jpg');" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Company Details</h1>
+            <div class="custom-breadcrumbs">
+              <a href="/">Home</a> <span class="mx-2 slash">/</span>
+              <a href="/admin/adminviewcompany">Company</a> <span class="mx-2 slash">/</span>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+	
+      <table class="table" align="center" style="width: 1100px;">
+        <h1 align="center">Company Details</h1>
+        <tr><th>Company Name</th>
+            <th>Address</th>
+            <th>Phone No</th>
+            <th>Email Id</th>
+        </tr>
+                
+          <tbody>
+            {% for row in data['company'] %}
+            <tr>
+            <td>{{row['companyname']}}</td>
+            <td>{{row['address']}}</td>
+            <td>{{row['phoneno']}}</td>
+            <td>{{row['emailid']}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+</form>
+</body>
+</html>
+{% include 'footer.html' %}
